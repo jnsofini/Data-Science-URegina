@@ -5,5 +5,5 @@ things I do for the group. Each of the notebook added will be deacribed here. Mo
 facilitate as well as problems of the week.
 
 ## Clustering
-This folder contain anything clustering. Included as simple files to
+This folder contains anything clustering. Included as simple files to
  - Identify optimal cluster size
