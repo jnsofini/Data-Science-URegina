@@ -200,16 +200,6 @@ resource "aws_security_group" "ml_web_sg" {
     cidr_blocks = ["${var.my_ip}/32"]
   }
 
-  // Accepting connection from mlflow port
-  ingress {
-    description = "Allow custom TCP from Mlflow"
-    from_port   = "5000"
-    to_port     = "5000"
-    protocol    = "tcp"
-    // This is using the variable "my_ip"
-    cidr_blocks = ["${var.my_ip}/32"]
-  }
-
   // This outbound rule is allowing all outbound traffic
   // with the EC2 instances
   egress {
@@ -225,8 +215,6 @@ resource "aws_security_group" "ml_web_sg" {
     Name = "ml_web_sg"
   }
 }
-
-
 
 
 // 13. Key-Pair

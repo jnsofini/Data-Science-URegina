@@ -1,53 +1,59 @@
 # Infrastructure
 
-We want to provision a basic infrastructure in AWS to act as a starting point for a small team to develop models. The method choice is [`Terraform`](https://developer.hashicorp.com/terraform/intro) which is a great tool for infrastructure configuration and management. We will use Terraform to deploy resources as inpired by [Matt Little](https://medium.com/@TheMattLittle) in this [Medium article](https://medium.com/strategio/using-terraform-to-create-aws-vpc-ec2-and-rds-instances-c7f3aa416133). First setup terraform locally by checking [`this link`](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) and following the instruction for your OS.  With terraform installed:
+This README provides information on how to provision a basic infrastructure in AWS using Terraform. Terraform is a powerful tool for infrastructure configuration and management. To set up the infrastructure, follow the steps outlined below.
+
+## Prerequisites
+
+Before getting started, ensure that you have Terraform installed on your local machine. If you don't have it already, you can refer to the [official Terraform installation guide](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) for instructions tailored to your operating system.
 
 ## Description of Infrastructure
 
-The infrastructure contains mainly of and EC2 for compute and an S3 for artifact storage. A simple sketch of the infrastructure is as follows.
+The infrastructure consists of an EC2 instance for compute and an S3 bucket for artifact storage. Refer to the diagram below for a visual representation of the infrastructure:
 
-![Image credit HashiCorp](../images/proto-compute.webp) _Image credit HashiCorp_
+![Infrastructure Diagram](../images/proto-compute.webp)
 
-## Requirement
+_Image credit: HashiCorp_
 
-To accomplish these tasks for the team we will need to create
+## Requirements
 
-- VPC
-- Internet Gateway and attach it to the VPC
-- subnets: 1 public for EC2
-- public route table
-- security group for EC2
-- EC2 instance
-- Verify that everything is set up correctly
+To create the necessary infrastructure, you will need to perform the following tasks:
 
-The terraform code provided can build an insfratucture with a small compute for demo purposes. Also, a bucket name must be provided, see line 4 of `iamrole_ec2_s3.tf`. The code expects that we have a private and public key-pair. They SSH keys are necessary to test connectivity once the insfratcture is built. To generate the key-pair we use the following in Ubuntu 22.04. Create the Key Pair in the terraform project root directory `compute-server-storage` via the following command:
+1. Create a VPC.
+2. Attach an Internet Gateway to the VPC.
+3. Configure a public subnet for the EC2 instance.
+4. Set up a public route table.
+5. Define a security group for the EC2 instance.
+6. Launch an EC2 instance.
+7. Verify the setup to ensure everything is functioning correctly.
+
+Additionally, you will need to provide a bucket name for artifact storage. You can find the relevant configuration in the `iamrole_ec2_s3.tf` file on line 4. Furthermore, it's important to generate a private and public key-pair, which are necessary for SSH connectivity testing once the infrastructure is built. To generate the key-pair in Ubuntu 22.04, use the following command from the root directory of the Terraform project, `compute-server-storage`:
 
 ```bash
 ssh-keygen -t rsa -b 4096 -m pem -f demo_kp && openssl rsa -in demo_kp -outform pem && chmod 400 demo_kp.pem
 ```
 
-## Provision
+## Provisioning
 
-To get the insfrastructure in aws, ensure the right profile has been set. For more details on setting AWS profiles locally consult ???. Here we are assuming the default profile. See line 22 of `main.tf`. Profiles are encouraged to avaoid exposing credentials. This is a good security practice. This demo infrastructure was also build for access from a single IP address. In the future we will open it to multiple IPs and also demo access from Active Directory. After adding the IP address, run the following
+To provision the infrastructure in AWS, ensure that the correct AWS profile is set. For detailed instructions on setting AWS profiles locally, refer to the AWS documentation. By default, the script assumes the use of the default profile, which is a good security practice to avoid exposing credentials. Keep in mind that this demo infrastructure has been designed for access from a single IP address. In the future, it can be modified to allow access from multiple IPs and integrate with Active Directory. Once you have added the IP address, execute the following commands:
 
 ```sh
 terraform init # downloads the necessary plugins for the project
-terraform plan # identify the neccerary changes including infra to provision
-terraform apply # deploy the services in AWS
+terraform plan # identifies the necessary changes, including infrastructure to be provisioned
+terraform apply # deploys the services in AWS
 ```
 
-To connect to the instance use
+To connect to the EC2 instance, use the following SSH command:
 
 ```sh
 ssh -i "tutorial_kp" ubuntu@$(terraform output -raw web_public_dns)
 ```
 
-If you are in the ubuntu server then you have a success story.
+If you successfully connect to the Ubuntu server, you have completed the setup process.
 
-## Installing tools
+## Installing Tools
 
-Some of the tools neccessary includes Anaconda Python which can be installed.
+After connecting to the server, you may want to install additional tools. One of the necessary tools is Anaconda Python, which can be installed according to your requirements.
 
-## Connecting to Server
+## Expanding Team Connectivity
 
-TODO: Explain how to expand the team connectivity beyond one person
+To expand team connectivity beyond a single person, further configuration steps are required. This section will be updated in the future to provide detailed instructions on how to achieve this.
