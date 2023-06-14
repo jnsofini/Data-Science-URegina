@@ -13,6 +13,7 @@ output
 wandb
 notebooks/*
 *.db
+*_kp
 # ------------------------------------
 
 # Byte-compiled / optimized / DLL files
