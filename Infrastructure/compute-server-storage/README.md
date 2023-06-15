@@ -12,7 +12,7 @@ The infrastructure consists of an EC2 instance for compute and an S3 bucket for 
 
 ![Infrastructure Diagram](../images/server_with_s3_backend-min.jpg)
 
-_Image credit: HashiCorp_
+_Image by author. [See](../images/diagram_ec2_s3.py)_
 
 ## Requirements
 
