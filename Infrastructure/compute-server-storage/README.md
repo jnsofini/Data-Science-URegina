@@ -57,3 +57,8 @@ After connecting to the server, you may want to install additional tools. One of
 ## Expanding Team Connectivity
 
 To expand team connectivity beyond a single person, further configuration steps are required. This section will be updated in the future to provide detailed instructions on how to achieve this.
+
+## Clean Up
+
+If you are here for learning purposes and wants to destroy your infrastructure, you can simply run
+`terraform apply -destroy -auto-approve`
