@@ -10,7 +10,7 @@ Before getting started, ensure that you have Terraform installed on your local m
 
 The infrastructure consists of an EC2 instance for compute and an S3 bucket for artifact storage. Refer to the diagram below for a visual representation of the infrastructure:
 
-![Infrastructure Diagram](../images/proto-compute.webp)
+![Infrastructure Diagram](../images/server_with_s3_backend-min.jpg)
 
 _Image credit: HashiCorp_
 
