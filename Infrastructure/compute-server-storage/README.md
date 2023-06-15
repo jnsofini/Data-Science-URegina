@@ -10,9 +10,9 @@ Before getting started, ensure that you have Terraform installed on your local m
 
 The infrastructure consists of an EC2 instance for compute and an S3 bucket for artifact storage. Refer to the diagram below for a visual representation of the infrastructure:
 
-![Infrastructure Diagram](../images/proto-compute.webp)
+![Infrastructure Diagram](../images/server_with_s3_backend-min.jpg)
 
-_Image credit: HashiCorp_
+_Image by author. [See](../images/diagram_ec2_s3.py)_
 
 ## Requirements
 
@@ -57,3 +57,8 @@ After connecting to the server, you may want to install additional tools. One of
 ## Expanding Team Connectivity
 
 To expand team connectivity beyond a single person, further configuration steps are required. This section will be updated in the future to provide detailed instructions on how to achieve this.
+
+## Clean Up
+
+If you are here for learning purposes and wants to destroy your infrastructure, you can simply run
+`terraform apply -destroy -auto-approve`
