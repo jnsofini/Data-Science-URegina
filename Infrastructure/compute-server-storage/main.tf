@@ -218,10 +218,10 @@ resource "aws_security_group" "ml_web_sg" {
 
 
 // 13. Key-Pair
-// Create a key pair named "ml_kp"
-resource "aws_key_pair" "ml_kp" {
+// Create a key pair named "demo_kp"
+resource "aws_key_pair" "demo_kp" {
   // Give the key pair a name
-  key_name   = "ml_kp"
+  key_name   = "demo_kp"
   
   // This is going to be the public key of our
   // ssh key. The file directive grabs the file
@@ -229,7 +229,7 @@ resource "aws_key_pair" "ml_kp" {
   // was created in the same directory as main.tf
   // we can just put the name
   # public_key = file("/home/fini/.ssh/ml_rsa.pub")
-  public_key = file("ml_kp.pub")
+  public_key = file("demo_kp.pub")
 }
 
 // 14. EC2
@@ -255,9 +255,9 @@ resource "aws_instance" "ml_web" {
   // "ml_public_subnet" and putting the EC2 instance in there
   subnet_id              = aws_subnet.ml_public_subnet[count.index].id
   
-  // The key pair to connect to the EC2 instance. We are using the "ml_kp" key 
+  // The key pair to connect to the EC2 instance. We are using the "demo_kp" key 
   // pair that we created
-  key_name               = aws_key_pair.ml_kp.key_name
+  key_name               = aws_key_pair.demo_kp.key_name
   
   // The security groups of the EC2 instance. This takes a list, however we only
   // have 1 security group for the EC2 instances.
