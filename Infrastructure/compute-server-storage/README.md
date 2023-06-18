@@ -52,7 +52,7 @@ terraform apply -var-file=secrets/secrets.tfvars # deploys the services in AWS
 To connect to the EC2 instance, use the following SSH command (note the IP):
 
 ```sh
-ssh -i "demo_kp" ubuntu@$ip-address
+ssh -i "demo_kp" ec2-user@$ip-address
 ```
 
 If this doesn't work try
@@ -62,7 +62,7 @@ ssh -o 'IdentitiesOnly yes' -i "demo_kp" ec2-user@ip-address
 
 ```
 
-If you successfully connect to the Ubuntu server, you have completed the setup process.
+If you successfully connect to the Linux server, you have completed the setup process.
 
 ## Installing Tools
 
