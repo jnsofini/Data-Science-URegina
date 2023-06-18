@@ -1,5 +1,15 @@
 # Provisioning Basic Infrastructure in AWS Using Terraform
 
+## Why Terraform?
+
+When I embarked on writing a series of posts about transitioning from proprietary software like SAS to open-source solutions, I quickly realized the importance of carefully setting up the infrastructure. As I delved deeper into the topic, I decided to enhance my knowledge in machine learning operations by enrolling in the MLOPS ZoomCamp. My goal was to provide comprehensive insights and guides in the transition process.
+
+During this journey, I experienced the constant need to manually create and manage cloud resources through the console. It became frustrating to discover that I had forgotten to delete certain resources, resulting in unnecessary costs. That's when I discovered Terraform, and it completely transformed my approach.
+
+With Terraform, I can effortlessly create and destroy cloud resources without worrying about leaving behind forgotten instances or services in various regions. It offers the flexibility and peace of mind that allows me to focus on my posts and content creation, rather than constantly monitoring and managing infrastructure.
+
+So here I am, excited to share my first post about infrastructure, empowered by the capabilities of Terraform. It has become an essential tool in my journey towards seamless and efficient infrastructure management.
+
 Are you looking to provision a basic infrastructure in AWS using Terraform? Look no further! In this blog post, we will guide you through the steps required to set up an infrastructure consisting of an EC2 instance for compute and an S3 bucket for artifact storage. By following these instructions, you'll have your infrastructure up and running in no time.
 
 ## Prerequisites
