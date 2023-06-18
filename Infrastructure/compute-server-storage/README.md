@@ -39,9 +39,9 @@ ssh-keygen -t rsa -b 4096 -m pem -f demo_kp && openssl rsa -in demo_kp -outform 
 
 To provision the infrastructure in AWS, ensure that the correct AWS profile is set. For detailed instructions on setting AWS profiles locally, refer to the AWS documentation. Basically you need to create an access key pair and run the command `aws configure`. A terminal will open for you to provide the access key id and secret key id. 
 
- By default, the script assumes the use of the default profile, which is a good security practice to avoid exposing credentials. Keep in mind that this demo infrastructure has been designed for access from a single IP address. In the future, it can be modified to allow access from multiple IPs and integrate with Active Directory. 
+ By default, the script assumes the use of the default profile, which is a good security practice to avoid exposing credentials. Keep in mind that this demo infrastructure has been designed for access from a single IP address. In the future, it can be modified to allow access from multiple IPs and integrate with Active Directory.
  
- Add you have added the IP address in file `secrets.tfvars`, execute the following commands:
+Add you have added the IP address in file `secrets.tfvars`, execute the following commands:
 
 ```sh
 terraform init # downloads the necessary plugins for the project
