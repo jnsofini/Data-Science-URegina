@@ -86,23 +86,6 @@ variable "my_ip" {
   sensitive   = true
 }
 
-// This variable contains the database master user
-// We will be storing this in a secrets file
-variable "db_username" {
-  description = "Database master user"
-  type        = string
-  sensitive   = true
-  //default     = "mlflow"
-}
-
-// This variable contains the database master password
-// We will be storing this in a secrets file
-variable "db_password" {
-  description = "Database master user password"
-  type        = string
-  sensitive   = true
-}
-
 variable "linux_ami" {
   description = "The AMI used to provision the ec2 here Amazon linux AMI"
   type        = string
