@@ -1,44 +1,85 @@
 # Lambda Kinesis Demo
 
-In this project we want to demostrate how to use a lambda function to process streaming data. Our streaming data could be from any aource including streaming log from a server or IOT device. Let's pretent that we have server and we are monitoring the temperature as we train a deep learning model.
+In this project, we will demonstrate how to use a Lambda function to process streaming data from a Kinesis stream. We will simulate the data source using the `stream_source.py` script, and the Lambda function responsible for processing the data is `monitor.py`.
 
-## Step 1. Setup Streaming Data
+## Step 1: Setup Streaming Data
 
-To get such data streaming we need a kinesis sevice in AWS. We start by creating a sevice called _server-data_ via _Amazon Kinesis -> Data streams -> Create data stream_. The following is what I had.
+To set up the streaming data, we need to create a Kinesis stream in AWS. Follow these steps:
+
+1. Go to the **Amazon Kinesis** service and select **Data streams**.
+2. Click **Create data stream** and provide a name for the stream, such as "_server-data_".
+3. Configure the desired number of shards based on your requirements.
+4. Once the stream is created, you should see it listed with the status "Active".
+
+Here is an example of the stream creation process:
 
 ![Filling the info](images/kinesis-console-start.png)
-![Running sevice](images/kinesis-console-active.png)
+![Running service](images/kinesis-console-active.png)
 
-To get streaming data from our server, we will use simulated data. A script is provided to generate data. Ensure you have the proper requirement which involes
+To generate the simulated data for the stream, we provide a script called `stream_source.py`. Before running the script, make sure you have completed the following requirements:
 
-- Setting the python environment and install all the requirements
-- Configuring AWS credentials. This can be done by directly adding the access key and id or using the a profile configure via `aws configure --profile`.
+- Set up the Python environment and install all the necessary requirements.
+- Configure your AWS credentials. You can either directly add the access key and ID or use a profile configured via `aws configure --profile`.
 
-We don't need to start generating data until we configure the consumer of the streaming data, this case out lambda function.
+It's not necessary to start generating data until we configure the consumer of the streaming data, which in this case is our Lambda function.
 
-## Step 2. Setup Consumer
+## Step 2: Setup Consumer
 
-Our consumer is a lambda function. Go to lambda functions and create a function called `temperature-monitor`, select python 3.10 and select _Use an existing role_. Here is what my console looks like.
+Our consumer is a Lambda function named `temperature-monitor`. Follow these steps to set it up:
 
-![Lambda console](images/lambda-console.png)
+1. Go to the **Lambda** service and click **Create function**.
+2. Provide a name for the function, select **Python 3.10** as the runtime, and choose **Use an existing role**.
+3. In a new AWS IAM window, go to **Roles** and create a role with the following configuration:
+   - Select **AWS service** as the trusted entity.
+   - Choose **Lambda** as the service that will use this role.
+   - Search for and select **AWSLambdaKinesisExecutionRole** as the policy.
+   - Give the policy a name, such as "_lambda-kinesis-role_".
+4. Once the role is created, go back to the Lambda function configuration page and select the role from the dropdown menu.
+5. With the role attached, the Lambda function can now read from the Kinesis stream. However, we still need to add a trigger to initiate the data processing.
 
 ### 1. Provide Consumer with Roles
 
-Actually, we don'y have a role yet. Open a new AWS IAM window and go to roles. Create a role and select _AWS Service -> Lamnda_, next, search for _AWSLambdaKinesisExecutionRole_, select next and name the policy as _lambda-kinesis-role_.
+Before attaching the role to the Lambda function, follow these steps:
+
+1. Open a new AWS IAM window and go to **Roles**.
+2. Create a new role and select **AWS service** as the trusted entity.
+3. Choose **Lambda** as the service that will use this role.
+4. Search for **AWSLambdaKinesisExecutionRole** and select it as the policy.
+5. Proceed to the next steps and name the policy as "_lambda-kinesis-role_" or any desired name.
 
 ### 2. Setup Lambda
 
-After creating this role, go back to the other window and select the role from the dropdown window and attached to the lambda function. Now the lambda function can read from Kinesis. But we also need to add a trigger.
+Once the role is created, return to the Lambda function configuration page and follow these steps:
+
+1. Select the newly created role from the dropdown menu.
+2. The Lambda function can now read from the Kinesis stream.
 
 ### 3. Event Trigger
 
-So that the lambda function can be triggered to read from Kinesis. Go to the lambda function page and click on 'Add trigger'. Select 'Kinesis'. On the window provided select select _server-data_ in the Kinesis stream. You can reduce the batch size to 10. This represents the number of events the lambda can pull. We also leave the 'starting position' to latest so that only latest data is processed. You can decided to continually preocess the data by selecting a trip or even specifying the time. Select 5s for batch window. Finish and you are good to go. Here is what mine looked like.
+To trigger the Lambda function to read from the Kinesis stream, follow these steps:
+
+1. Go to the Lambda function page and click on **Add trigger**.
+2. Select **Kinesis** as the trigger type.
+3. In the provided window, select the **server-data** stream from the Kinesis stream dropdown.
+4. Optionally, you can adjust the **batch size** (e.g., 10
+
+) to determine the number of events the Lambda function can pull.
+5. Leave the **starting position** as **Latest** to process only the latest data. You can choose to process the entire stream by selecting a trim horizon or specifying a time range.
+6. Set the **batch window** to 5 seconds (or your desired value).
+7. Finish the trigger setup.
+
+Here is an example of a finished Lambda function console:
 
 ![](images/lambda-console-finished.png)
 
-## Step 3. Generate Events
+## Step 3: Generate Events
 
-Next generate the streaming data via
-`python stream_source.py`. The events are pushed to the kinesis stream.
+To generate the streaming data, run the `stream_source.py` script using the command `python stream_source.py`. This script will push events to the Kinesis stream.
 
-Watch the incoming data in the Monitor page of the lambda function. Select 'Monitor' and view in cloudWatch logs. Click the log for the labda function and see the output.
+To monitor the incoming data in the Lambda function, follow these steps:
+
+1. Go to the Lambda function page and select **Monitor**.
+2. View the CloudWatch logs by clicking on the log group associated with the Lambda function.
+3. Inspect the logs to see the output of the Lambda function.
+
+Make sure to observe the CloudWatch logs to verify that the Lambda function is successfully processing the streaming data.
