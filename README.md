@@ -19,3 +19,7 @@ This folder contains anything clustering. Included as simple files to
 ## [Code Quality](CodeQuality)
 
 When our code set starts to grow and when we are building highly sensitive applications, we cannot ignore the code quality. There is static code analysis that helps us identify bugs but there are also analysis for security. SonarQube offers sonar scanner which can help identify security vulnerabilities in out code as well as analysis of test cases when they fail.
+
+## [Streaming](streaming)
+
+This folder contains streaming projects. At the moment we have a demo project on how to use lambda to process streaming events and push the results to another service. This is located in [Streaming/demo](Streaming/demo/)
