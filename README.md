@@ -15,3 +15,7 @@ Here we have terraform code to provision EC2 that can connect to an S3 bucket ba
 This folder contains anything clustering. Included as simple files to
 
 - Identify optimal cluster size
+
+## [Code Quality](CodeQuality)
+
+When our code set starts to grow and when we are building highly sensitive applications, we cannot ignore the code quality. There is static code analysis that helps us identify bugs but there are also analysis for security. SonarQube offers sonar scanner which can help identify security vulnerabilities in out code as well as analysis of test cases when they fail.
