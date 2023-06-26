@@ -1,4 +1,4 @@
-# SonaQube
+# SonarQube
 
 In this project we want to cover the following using docker.
 
