@@ -18,7 +18,7 @@ Here is an example of the stream creation process:
 
 To generate the simulated data for the stream, we provide a script called `stream_source.py`. Before running the script, make sure you have completed the following requirements:
 
-- Set up the Python environment and install all the necessary requirements.
+- Set up the Python environment and install all the necessary requirements via  `pip instaall pipenv && pipenv install`.
 - Configure your AWS credentials. You can either directly add the access key and ID or use a profile configured via `aws configure --profile`.
 
 It's not necessary to start generating data until we configure the consumer of the streaming data, which in this case is our Lambda function.
@@ -74,7 +74,14 @@ Here is an example of a finished Lambda function console:
 
 ## Step 3: Generate Events
 
-To generate the streaming data, run the `stream_source.py` script using the command `python stream_source.py`. This script will push events to the Kinesis stream.
+To generate the streaming data, activate the environment and run the `stream_source.py` script using the command 
+
+```sh
+pipenv shell
+python stream_source.py
+```
+
+This script will push events to the Kinesis stream.
 
 To monitor the incoming data in the Lambda function, follow these steps:
 
