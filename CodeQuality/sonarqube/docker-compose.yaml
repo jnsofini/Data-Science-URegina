@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  sonarqube:
+    image: sonarqube:8.5.1-community
+    container_name: sonarqube
+    hostname: sonarqube
+    depends_on:
+      - db
+    ports:
+      - 9000:9000
+    environment:
+      - sonar.jdbc.username=admin
+      - sonar.jdbc.password=admin
+      - sonar.search.javaAdditionalOpts=-Dbootstrap.system_call_filter=false
+    volumes:
+      - ./logs:/opt/sonarqube/logs
+      - ./data:/opt/sonarqube/data
+      - ./extensions:/opt/sonarqube/extensions
+
+  db:
+    image: postgres:13.1
+    container_name: db
+    hostname: db
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - ./pg_db:/var/lib/postgresql
+      - ./pg_data:/var/lib/postgresql/data
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+volumes:
+  pg_db:
+    driver: local
+  pg_data:
+    driver: local
