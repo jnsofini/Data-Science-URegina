@@ -29,8 +29,13 @@ With the AWS CLI installed, you can create a profile tied to the permissions in 
 To create a default profile, run the following command in the terminal:
 
 ```sh
-aws configure
 admin@ubuntu:~$ aws configure
+admin@ubuntu:~$ aws configure
+```
+
+Output looks like
+
+```sh
 AWS Access Key ID [****************KAPE]: AKIAV7GQDWMJHBDNKAPE
 AWS Secret Access Key [****************12S0]: MKO8WlfajpYcfoeqMg+1AspjsPj5iNF2T127T 
 Default region name [us-east-2]: us-east-2
@@ -41,8 +46,13 @@ admin@ubuntu:~$
 To configure a named profile (e.g., _terraform-user_), use the following command:
 
 ```sh
-aws configure --profile terraform-user
 admin@ubuntu:~$ aws configure --profile terraform-user
+admin@ubuntu:~$ aws configure --profile terraform-user
+```
+
+Output looks like
+
+```sh
 AWS Access Key ID [****************KAPE]: AKIAV7GQDWMJHBDNKAPE
 AWS Secret Access Key [****************12S0]: MKO8WlfajpYcfoeqMg+1AspjsPj5iNF2T127T
 Default region name [us-east-2]: us-east-2
