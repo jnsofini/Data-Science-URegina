@@ -4,6 +4,7 @@ on:                 # Required
     branches: [ deploy ]
     paths: #Where changes should be consider
       - 'ModelDeployment/credit-score-app/**'
+      - 'ModelDeployment/**'
   pull_request:
     branches: 
       - 'deploy'
