@@ -2,7 +2,7 @@ name: Python CICD to Build and Deploy   #Optional
 on:                 # Required
   push:  # Name of event that triggers the action
     branches: [ deploy ]
-    paths: #Where changes should be consider
+    paths: #Where changes should be consider. Added dockerfile
       - 'ModelDeployment/credit-score-app/**'
       - 'ModelDeployment/**'
   pull_request:
