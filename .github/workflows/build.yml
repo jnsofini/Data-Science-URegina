@@ -3,9 +3,9 @@ on:                 # Required
   push:  # Name of event that triggers the action
     branches: 
       - deploy
-    paths: #Where changes should be consider. Added dockerfile
-      - 'ModelDeployment/credit-score-app/**'
-      - 'ModelDeployment/**'
+    # paths: #Where changes should be consider. Added dockerfile
+    #   - 'ModelDeployment/credit-score-app/**'
+    #   - 'ModelDeployment/**'
   pull_request:
     branches: 
       - 'deploy'
