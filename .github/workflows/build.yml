@@ -1,4 +1,4 @@
-name: Python CICD   #Optional
+name: Python CICD to Build and Deploy   #Optional
 on:                 # Required
   push:  # Name of event that triggers the action
     branches: [ deploy ]
