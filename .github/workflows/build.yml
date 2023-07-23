@@ -1,0 +1,28 @@
+name: Python CICD   #Optional
+on:                 # Required
+  push:  # Name of event that triggers the action
+    branches: [ deploy ]
+    paths: #Where changes should be consider
+      - 'ModelDeployment/credit-score-app/**'
+  pull_request:
+    branches: 
+      - 'deploy'
+    paths: #Where changes should be consider
+      - 'ModelDeployment/credit-score-app/**'
+
+jobs: # Set of actions to execute when vent happens in cronology
+  build: #arbitrary name here 'build'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      name: Check out code
+
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Build & push Docker image
+      with:
+        image: devwoobanten/deploy
+        tags: v1, latest
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
