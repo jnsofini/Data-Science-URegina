@@ -23,7 +23,7 @@ jobs: # Set of actions to execute when vent happens in cronology
         image: devwoobanten/deploy
         tags: v1, latest
         registry: docker.io
-        directory: ModelDeployment/
-        dockerfile: ModelDeployment/Dockerfile
+        # directory: ModelDeployment/
+        dockerfile: ./ModelDeployment/Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
