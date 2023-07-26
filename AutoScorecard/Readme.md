@@ -38,3 +38,6 @@ python auto-scorecard.py
 ```
 
 During the first run, the code will attempt to read files that are not generated yet. In subsequent runs, it can identify some files that are needed. This include files like information value tables. This means the result from the first run could differ from the one from subsequent runs. This is by design!
+
+
+The refactored code with manage.py can optionally accept a string parameter. We can activate the reliable credit scoring environment and then run via `python manage.py` pr `python manage.py reduction` etc
