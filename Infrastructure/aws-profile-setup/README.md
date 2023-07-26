@@ -30,8 +30,8 @@ To create a default profile, run the following command in the terminal:
 
 ```sh
 admin@ubuntu:~$ aws configure
-admin@ubuntu:~$ aws configure
 ```
+which allows you to pass three params, namely, the aws access key, aws secret key and the region and optional output format.
 
 Output looks like
 
