@@ -23,3 +23,7 @@ When our code set starts to grow and when we are building highly sensitive appli
 ## [Streaming](streaming)
 
 This folder contains streaming projects. At the moment we have a demo project on how to use lambda to process streaming events and push the results to another service. This is located in [Streaming/demo](Streaming/demo/)
+
+## [Scorecard](AutoScorecard)
+
+This folder contains code to build a scorecard automatically. The scorecard model is capable of generating scores from within a range analogous to probabilities ranging from 0 to 1.
